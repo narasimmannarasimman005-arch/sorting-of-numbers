@@ -23,6 +23,44 @@ To write and execute an Assembly Language Program for sorting data in Ascending 
 ## Program (Ascending order)
 
 ```asm
+ORG 0000H
+LJMP MAIN
+
+ORG 0030H
+MAIN:
+    MOV R0, #04H
+OUTER_LOOP:
+    MOV R1, #04H
+    MOV R2, #40H
+INNER_LOOP:
+    MOV A, R2
+    MOV R3, A
+    INC R3
+    
+    MOV A, @R2
+    MOV B, A
+    
+    MOV A, R3
+    MOV R4, A
+    MOV A, @R4
+    
+    CLR C
+    SUBB A, B
+    JNC NO_SWAP
+    
+    MOV A, @R2
+    MOV B, A
+    MOV A, @R4
+    MOV @R2, A
+    MOV A, B
+    MOV @R4, A
+NO_SWAP:
+    INC R2
+    DJNZ R1, INNER_LOOP
+    DJNZ R0, OUTER_LOOP
+
+HERE: SJMP HERE
+END
 
 
 
@@ -30,6 +68,7 @@ To write and execute an Assembly Language Program for sorting data in Ascending 
 ```
 ## OUTPUT(Ascending order)
 
+<img width="870" height="392" alt="image" src="https://github.com/user-attachments/assets/6fbff8dd-c350-453e-974f-66abe11a1e04" />
 
 
 ---
@@ -49,6 +88,44 @@ To write and execute an Assembly Language Program for sorting data in Ascending 
 ## Program (Descending order)
 
 ```asm
+ORG 0000H
+LJMP MAIN
+
+ORG 0030H
+MAIN:
+    MOV R0, #04H
+OUTER_LOOP:
+    MOV R1, #04H
+    MOV R2, #40H
+INNER_LOOP:
+    MOV A, R2
+    MOV R3, A
+    INC R3
+    
+    MOV A, @R2
+    MOV B, A
+    
+    MOV A, R3
+    MOV R4, A
+    MOV A, @R4
+    
+    CLR C
+    SUBB A, B
+    JC NO_SWAP
+    
+    MOV A, @R2
+    MOV B, A
+    MOV A, @R4
+    MOV @R2, A
+    MOV A, B
+    MOV @R4, A
+NO_SWAP:
+    INC R2
+    DJNZ R1, INNER_LOOP
+    DJNZ R0, OUTER_LOOP
+
+HERE: SJMP HERE
+END
 
 
 
@@ -56,6 +133,7 @@ To write and execute an Assembly Language Program for sorting data in Ascending 
 ```
 ## OUTPUT(Descending order)
 
+<img width="877" height="353" alt="image" src="https://github.com/user-attachments/assets/fcf3068d-6f97-406f-81aa-7eea10a703d9" />
 
 
 ---
